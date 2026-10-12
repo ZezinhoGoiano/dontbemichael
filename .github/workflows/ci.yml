@@ -93,4 +93,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test suite
+        run: npm run test:focused 
+  # Linux added alongside macOS/Windows as an advisory check (issue #35,
+  # Stage 1). Not yet in the required-checks ruleset on main.
+  test-linux:
+    name: Tests (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      # build-essential provides gcc/make for node-gyp (native node-pty,
+      # better-sqlite3 rebuilds triggered by npm ci's install scripts).
+      - name: Install native build dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+      - name: Install dependencies
+        run: npm ci
+      - name: Test suite
         run: npm run test:focused
