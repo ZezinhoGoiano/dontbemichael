@@ -1,7 +1,6 @@
 # Reverse DNS of this project's own home (was the upstream project's domain).
 appId: io.github.agentvivekkumar.dontbemichael
 productName: "Don't Be Michael"
-executableName: dontbemichael
 copyright: Copyright © 2026 Vivek Kumar
 
 # Where electron-updater looks for new versions (latest*.yml + assets on GitHub
@@ -170,9 +169,11 @@ nsis:
 
 # ---- Linux ----
 linux:
+  executableName: dontbemichael
   category: Development
   icon: build/icons
-  maintainer: Vivek Kumar <noreply@github.com>
+  # Placeholder; the project owner will set the release maintainer.
+  maintainer: "Package Maintainer <maintainer@example.invalid>"
   target:
     - target: AppImage
       arch: [x64]
